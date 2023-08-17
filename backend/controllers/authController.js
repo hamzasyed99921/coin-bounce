@@ -8,7 +8,7 @@ const RefreshToken = require('../models/token')
 const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 
-const authController = { 
+const authController = {  
     // Register Route
     async register(req,res,next){
         // validate user input
@@ -160,7 +160,7 @@ const authController = {
             })
            
             const userDto = new UserDTO(user)
-          return res.status(200).json({userDto, auth: true}) 
+          return res.status(200).json({user:userDto, auth: true}) 
     },
 
     async logout(req,res,next){

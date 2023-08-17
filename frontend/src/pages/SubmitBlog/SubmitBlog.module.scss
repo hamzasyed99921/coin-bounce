@@ -1,0 +1,26 @@
+.content{
+    width: 60% !important;
+    padding: 10px 20px;
+    margin: 15px;
+    outline: none;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.submit{
+    outline: none;
+    background-color: #1f4ffd;
+    color: #fff;
+    border: none;
+    width: 35%;
+    padding: 10px 0;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 10px 0 40px 0;
+    &:disabled{
+        background-color: #6e8dfc;
+    }
+}

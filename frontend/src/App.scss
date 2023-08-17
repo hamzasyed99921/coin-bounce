@@ -1,0 +1,81 @@
+body{
+    font-family: inter !important;
+    color: #fff !important;
+    background-color: #020202 !important;
+}
+
+
+// Navbar start
+
+.navbar-brand{
+    color: #fff !important;
+}
+
+.active-link{
+    font-size: 16px !important;
+    margin: 0 8px;
+    text-decoration: none;
+}
+
+.inActiveStyle{
+    text-decoration: none;
+    color: #fff !important;
+    font-size: 16px;
+    margin: 0 8px;
+}
+
+.login_btn{
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #000;
+
+    &:hover{
+        color: #000;
+        background-color: #f3f3f3;
+    }
+}
+
+.signup_btn{
+    background-color: #3864fb;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 5px 10px;
+    &:hover{
+        color: #000;
+        background-color: #1f4ffd;
+    }
+}
+
+.signOut_btn{
+    background-color: #ea3943;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 5px 10px;
+    &:hover{
+        color: #000;
+        background-color: #ee202a;
+    }
+}
+
+// Navbar section end
+
+// Footer Section
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #020202 !important;
+}
+// Footer Section end

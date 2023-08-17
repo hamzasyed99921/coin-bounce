@@ -34,7 +34,7 @@ router.get('/blog/all', auth, blogController.getAll)
 // get blog by id
 router.get('/blog/:id', auth , blogController.getById)
 
-// update
+// update 
 router.put('/blog/:id', auth , blogController.update)
 
 // delete

@@ -2,9 +2,19 @@ const Joi = require('joi')
 const fs = require('fs');
 const Blog = require('../models/blog');
 const Comment = require('../models/comment');
-const {BACKEND_SERVER_PATH} = require('../config/index')
+const {BACKEND_SERVER_PATH, CLOUD_NAME, API_KEY, API_SECRET} = require('../config/index')
 const BlogDTO = require('../dto/blog')
 const BlogDetailsDTO = require('../dto/blog-details')
+const cloudinary = require("cloudinary").v2;
+
+// Configuration
+cloudinary.config({
+    cloud_name: CLOUD_NAME,
+    api_key: API_KEY,
+    api_secret: API_SECRET,
+  });
+  
+
 
 const mongodbIdPattern = /^[0-9a-fA-F]{24}$/;
 
@@ -28,27 +38,34 @@ const blogController = {
         // handle photo storage, naming
         const {title,content,author,photo} = req.body;
         // read as buffer
-        const buffer = Buffer.from(photo.replace(/^data:image\/(png|jpg|jpeg); base64,/, ''), 'base64')
+        // const buffer = Buffer.from(photo.replace(/^data:image\/(png|jpg|jpeg); base64,/, ''), 'base64')
+        const base64Data = photo.replace(/^data:image\/\w+;base64,/, '');
+        const imageBuffer = Buffer.from(base64Data, 'base64');
+
 
         // alot a random name 
         const imagePath = `${Date.now()}-${author}.png`;
 
         // save locally
+        let response;
         try {
-            fs.writeFileSync(`storage/${imagePath}`, buffer)
-        } catch (error) {
-            return next(error)
-        }
+            // response = await cloudinary.uploader.upload(decodedString);
+            // fs.writeFileSync('image.png', imageBuffer);
+            fs.writeFileSync(`storage/${imagePath}`, imageBuffer);
+          } catch (error) {
+            return next(error);
+          }
 
         // add to db
         let newBlog;
         try {
              newBlog = new Blog({
-                title,
+                title,  
                 content,
                 author,
-                photoPath: `${BACKEND_SERVER_PATH}/storage/${imagePath}` 
-            }) ;
+                photoPath: `${BACKEND_SERVER_PATH}/storage/${imagePath}`,
+                // photoPath: response,
+            });
 
                 await newBlog.save();
 
@@ -56,7 +73,9 @@ const blogController = {
             return next(error)
         }
         // return response
-        return res.status(201).json({newBlog})
+        const blogDto = new BlogDTO(newBlog);
+
+        return res.status(201).json({ blog: blogDto });
     },
     async getAll(req,res,next){
         try {

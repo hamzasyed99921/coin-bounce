@@ -1,0 +1,38 @@
+.loginWrapper{
+    margin: 80px 80px;
+    .loginHeader{
+        text-align: center;
+        font-weight: 600;
+        font-size: 35px;
+    }
+    .loginBtn{
+        outline: none;
+        background-color: #1f4ffd;
+        color: #fff;
+        border: none;
+        width: 25%;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 18px;
+
+        &:disabled{
+            background-color: #6e8dfc;
+        }
+    }
+    span{
+        font-size: 14px;
+    }
+    .createAccount{
+        background-color: transparent;
+        outline: none;
+        border: none;
+        color: #16c784;
+        font-size: 15px;
+    }
+    .errorMessage{
+        color: #de1b55;
+        width: 26%;
+        font-size: 12px;
+        margin-bottom: 30px;
+    }
+}
